@@ -51,7 +51,7 @@ Once the files were created, a web file server was also created on port 80, usin
 
 ![Web File Server](images/webfileserverdemo.png)
 
-At this point, the only thing left to do is to listen on the default port, to do this it was used the command: `nc -lvp 4444 -n`
+At this point, the only thing left to do is to listen on the default port, to do this it was used netcat, with the command: `nc -lvp 4444 -n`
 
 # Reverse shell 
 
@@ -76,4 +76,10 @@ So, every time the machine is accessed, countless terminal windows will be opene
 Furthermore, another interesting feature is that, trying to remove `dos` using the Startup Application Preferences application and restarting the machine, the program is still executed, this is because the `dos.desktop` file present in `.config/autostart` is not removed, and continues to put the program among the applications to be executed at startup.
 To stop this attack you might think of deleting the `dos` executable, but in case it is placed in a folder not easily reachable, this could not be done, especially if you do not know what is happening and if the machine starts to crash.
 Alternatively, you could think of deleting the `dos.desktop` file, but given that it is located in a directory that is hidden by default and given that the terminal is unusable, this could be difficult.
+
+# References
+[1] Payload for creating the reverse shell: https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/
+[2] For the creation of the web file server, inspiration was taken from: https://medium.com/@jbtechmaven/ethical-hacking-reverse-shell-attack-using-metasploit-57e9cd400c88
+[3] for usage of netcat, to make the attacker listen on a predefined port: https://www.geeksforgeeks.org/how-to-create-reverse-shells-with-netcat-in-kali-linux/
+
 
