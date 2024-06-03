@@ -32,7 +32,7 @@ int main(){
 ```
 The terminal was chosen to be opened for simplicity, it is possible to do it with other applications and also open several of them, creating a real crash of the machine.
 Finally, the `dos.desktop` file was created:
-```
+```bash
 [Desktop Entry]                  
 Type=Application                
 Exec=/home/ubuntu/dos            
