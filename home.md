@@ -51,7 +51,7 @@ Once the files were created, a [web file server](https://medium.com/@jbtechmaven
 
 ![Web File Server](images/webfileserverdemo.png)
 
-At this point, the only thing left to do is to listen on the default port, to do this it was used [netcat](https://www.geeksforgeeks.org/how-to-create-reverse-shells-with-netcat-in-kali-linux/), with the command: `nc -lvp 4444 -n`
+At this point, the only thing left to do is to listen on the chosen port, to do this it was used [netcat](https://www.geeksforgeeks.org/how-to-create-reverse-shells-with-netcat-in-kali-linux/), with the command: `nc -lvp 4444 -n`
 
 # Reverse shell 
 
