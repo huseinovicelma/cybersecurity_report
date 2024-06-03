@@ -4,8 +4,11 @@
 
 ## Introduction
 
+The goal of the demo is to create a denial of service on an ubuntu virtual machine that is the attacked machine, to do so I used a Kali virtual machine as the attacker.
 
-![Photo of Mountain](images/mountain.jpg)
+## Reverse shell
+
+For doing the denial of service, 
 
 [Docsify](https://docsify.js.org/#/) can generate article, portfolio and documentation websites on the fly. Unlike Docusaurus, Hugo and many other Static Site Generators (SSG), it does not generate static html files. Instead, it smartly loads and parses your Markdown content files and displays them as a website.
 
