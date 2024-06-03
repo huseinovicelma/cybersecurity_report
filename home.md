@@ -46,12 +46,12 @@ Comment=
 ```
 It will be used to insert the program that executes the Denial of Service among the applications that open at the start of the machine.
 The Hidden and NoDisplay flags, to highlight the Denial of Service, have been set to false, if they are set to true, the program runs without the user noticing anything, so the machine is slowed down without being able to understand the reason.
-Once the files were created, a web file server was also created on port 80, using the command.
+Once the files were created, a [web file server] was also created on port 80, using the command.
 `python -m http.server 80`
 
 ![Web File Server](images/webfileserverdemo.png)
 
-At this point, the only thing left to do is to listen on the default port, to do this it was used netcat, with the command: `nc -lvp 4444 -n`
+At this point, the only thing left to do is to listen on the default port, to do this it was used [netcat], with the command: `nc -lvp 4444 -n`
 
 # Reverse shell 
 
@@ -79,7 +79,7 @@ Alternatively, you could think of deleting the `dos.desktop` file, but given tha
 
 ## References
 1. [Payload]: https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/
-2. [For the creation of the web file server, inspiration was taken from](https://medium.com/@jbtechmaven/ethical-hacking-reverse-shell-attack-using-metasploit-57e9cd400c88)
-3. [For usage of netcat, to make the attacker listen on a predefined port](https://www.geeksforgeeks.org/how-to-create-reverse-shells-with-netcat-in-kali-linux/)
+2. [web file server]: https://medium.com/@jbtechmaven/ethical-hacking-reverse-shell-attack-using-metasploit-57e9cd400c88
+3. [netcat]: https://www.geeksforgeeks.org/how-to-create-reverse-shells-with-netcat-in-kali-linux/
 
 
