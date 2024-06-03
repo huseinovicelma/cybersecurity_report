@@ -72,9 +72,7 @@ quindi, ogni volta che avverrà l'accesso alla macchina, verranno aperte in loop
 
 ![DoS](images/dos.png)
 
-# Recovery
-
-Provando a rimuovere `dos` utilizzando l'applicazione Startup Application Preferences e riavvinado la macchina, il programma viene eseguito comunque, questo perchè non viene rimosso il file `dos.desktop` presente in `.config/autostart`, il quale continua rimettere il programma tra le applicazioni da eseguire all'avvio. 
+Inoltre, un'altra feature interessante è che, provando a rimuovere `dos` utilizzando l'applicazione Startup Application Preferences e riavvinado la macchina, il programma viene eseguito comunque, questo perchè non viene rimosso il file `dos.desktop` presente in `.config/autostart`, il quale continua rimettere il programma tra le applicazioni da eseguire all'avvio. 
 Per fermare questo attacco si potrebbe pensare di cancellare l'eseguibile `dos`, ma nel caso in cui questo venga a sua volta posto in una cartella non facilmente raggiungibile, questo non si potrebbe fare, soprattutto se non si sa cosa sta succedendo e se la macchina comincia a crashare. 
 In alternativa si potrebbe pensare si cancellare il file dos.desktop, ma essendo collocato in una directory nascosta di default ed essendo il terminale non utilizzabile, questo potrebbe risultare difficile.
 
