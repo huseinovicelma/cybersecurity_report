@@ -4,7 +4,7 @@
 
 # Introduction
 
-L'obiettivo della demo è di creare un Denial of Service persistente su una macchina virtuale Ubuntu, che quindi sarà la macchina attaccata, mentre per l'attaccante è stata utilizzata una macchina virtuale Kali.
+L'obiettivo della demo è di creare un Denial of Service persistente su una macchina virtuale Ubuntu, che quindi sarà la macchina attaccata, mentre per l'attaccante è stata utilizzata una macchina virtuale Kali. Per fare ciò, per prima cosa viene creata una reverse shell per permettere alla macchina attaccante di agire liberamente sulla macchina Ubuntu. 
 
 ## Preparazione Kali
 Per prima cosa sono stati creati tutti i file necessari su Kali.
@@ -38,17 +38,16 @@ Comment[eu_US]=
 Comment=
 </pre>
 che verrà utilizzato per inserire il programma che esegue il Denial of Service tra le applicazioni che si aprono all'avvio della macchina. 
-Una volta creati i file, è stata creato anche un web file server sulla porta 80, utilizzando il comando `python -m http.server 80`
-
-Per fare il Denial of service, per prima cosa è stata creata una reverse shell, in modo che dalla macchina Kali si potessero eseguire comandi sulla macchina ubuntu. Per fare ciò è stato utilizzado un [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#p erl) in python, è stato creato un file, chiamato reverseshell.sh.
-Preparazione Kali: utilizzando il comando `python -m http.server 80` è stato creato un web file server sulla porta 80. 
+Una volta creati i file, è stata creato anche un web file server sulla porta 80, utilizzando il comando 
+`python -m http.server 80`
 
 ![Web File Server](images/webfileserverdemo.png)
 
 A questo punto, l'unica cosa che rimane da fare, è mettersi in ascolto sulla porta predefinita, per fare ciò è stato utilizzato il comando `nc -lvp 4444 -n`
 
+# Reverse shell 
 
-**Markdown** is a system-independent markup language that is easier to learn and use than **HTML**.
+Per creare la reverse shell, è necessario che l'utente sulla macchina attaccata venga convinto a scaricare ed eseguire 
 
 _Figure 1: The Markdown Mark_
 
