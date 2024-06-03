@@ -1,5 +1,4 @@
-## Huseinovic Elma
-## Cybersecurity report 
+## Huseinovic Elma - Cybersecurity report 
 
 # Reverse shell and Denial of service with persistence on an Ubuntu virtual machine
 
