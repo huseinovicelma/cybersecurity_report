@@ -25,7 +25,7 @@ int main(){
 ```
 è stato scelto di aprire il terminale per semplicità, è possibile farlo con altre applicazioni e anche aprirne diverse, creando un vero e proprio crash della macchina. 
 Infine è stato creato il file `dos.desktop` 
-<pre>
+```js
 [Desktop Entry]                  
 Type=Application                
 Exec=/home/ubuntu/dos            
@@ -36,7 +36,7 @@ Name[en_US]=dos
 Name=dos
 Comment[eu_US]=
 Comment=
-</pre>
+```
 che verrà utilizzato per inserire il programma che esegue il Denial of Service tra le applicazioni che si aprono all'avvio della macchina. 
 I flag Hidden e NoDisplay, per evidenziare il Denial of Service, sono stati messi a false, se vengono settati a true, il programma viene eseguito senza che l'utente si accorga di nulla, quindi la macchina viene rallentata senza la riesca a capire il motivo.
 Una volta creati i file, è stata creato anche un web file server sulla porta 80, utilizzando il comando 
