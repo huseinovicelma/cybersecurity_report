@@ -46,7 +46,7 @@ Comment=
 ```
 It will be used to insert the program that executes the Denial of Service among the applications that open at the start of the machine.
 The Hidden and NoDisplay flags, to highlight the Denial of Service, have been set to false, if they are set to true, the program runs without the user noticing anything, so the machine is slowed down without being able to understand the reason.
-Once the files were created, a [web file server](https://medium.com/@jbtechmaven/ethical-hacking-reverse-shell-attack-using-metasploit-57e9cd400c88) was also created on port 80, using the command.
+Once the files were created, a [web file server](https://medium.com/@jbtechmaven/ethical-hacking-reverse-shell-attack-using-metasploit-57e9cd400c88) was also created on port 80, using the command
 `python -m http.server 80`
 
 ![Web File Server](images/webfileserverdemo.png)
