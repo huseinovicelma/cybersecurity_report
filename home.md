@@ -1,6 +1,9 @@
-# Cybersecurity demo: Reverse shell and Denial of service on a Ubuntu virtual machine
+# Cybersecurity report Huseinovic Elma
 
-## Create, Share and Collaborate
+## Reverse shell and Denial of service on a Ubuntu virtual machine
+
+## Introduction
+
 
 ![Photo of Mountain](images/mountain.jpg)
 
