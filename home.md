@@ -42,7 +42,7 @@ Una volta creati i file, è stata creato anche un web file server sulla porta 80
 
 Per fare il Denial of service, per prima cosa è stata creata una reverse shell, in modo che dalla macchina Kali si potessero eseguire comandi sulla macchina ubuntu. Per fare ciò è stato utilizzado un [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#p erl) in python, è stato creato un file, chiamato reverseshell.sh.
 Preparazione Kali: utilizzando il comando `python -m http.server 80` è stato creato un web file server sulla porta 80. 
-![Web File Server](images/webfileserver2.png)
+![Web File Server](images/webfileserver.png)
 
 
 **Markdown** is a system-independent markup language that is easier to learn and use than **HTML**.
