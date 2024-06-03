@@ -78,8 +78,8 @@ To stop this attack you might think of deleting the `dos` executable, but in cas
 Alternatively, you could think of deleting the `dos.desktop` file, but given that it is located in a directory that is hidden by default and given that the terminal is unusable, this could be difficult.
 
 ## References
-1. https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/
-2. https://medium.com/@jbtechmaven/ethical-hacking-reverse-shell-attack-using-metasploit-57e9cd400c88
-3. https://www.geeksforgeeks.org/how-to-create-reverse-shells-with-netcat-in-kali-linux/
+1. The payload for the reverse shell was taken from: https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/
+2. The creation of the web file server was taken from: https://medium.com/@jbtechmaven/ethical-hacking-reverse-shell-attack-using-metasploit-57e9cd400c88
+3. The usage of netcat to make the machine listen on a prefefined port was taken from: https://www.geeksforgeeks.org/how-to-create-reverse-shells-with-netcat-in-kali-linux/
 
 
