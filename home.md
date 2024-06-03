@@ -4,13 +4,16 @@
 
 ## Introduction
 
-The goal of the demo is to create a denial of service on an ubuntu virtual machine that is the attacked machine, to do so I used a Kali virtual machine as the attacker.
+L'obiettivo della demo è di creare un Denial of Service persistente su una macchina virtuale Ubuntu, che quindi sarà la macchina attaccata, mentre per l'attaccante è stata utilizzata una macchina virtuale Kali.
 
 ## Reverse shell
 
-For doing the denial of service, 
+Per fare il Denial of service, per prima cosa è stata creata una reverse shell, in modo che dalla macchina Kali si potessero eseguire comandi sulla macchina ubuntu. Per fare ciò è stato utilizzado un [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#perl) in python, è stato creato un file, chiamato reverseshell.sh in Kali, poi, utilizzando il comando python -m http.server 80, sempre su Kali, è stato creato un web file server sulla porta 80. 
 
-[Docsify](https://docsify.js.org/#/) can generate article, portfolio and documentation websites on the fly. Unlike Docusaurus, Hugo and many other Static Site Generators (SSG), it does not generate static html files. Instead, it smartly loads and parses your Markdown content files and displays them as a website.
+
+
+[Docsify](https://docsify.js.org/#/) 
+nerate article, portfolio and documentation websites on the fly. Unlike Docusaurus, Hugo and many other Static Site Generators (SSG), it does not generate static html files. Instead, it smartly loads and parses your Markdown content files and displays them as a website.
 
 ## Introduction
 
